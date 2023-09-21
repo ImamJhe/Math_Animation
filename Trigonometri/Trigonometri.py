@@ -1,4 +1,3 @@
-import numpy as np
 from manim import *
 
 class Trigon(Scene):
@@ -26,9 +25,9 @@ class Trigon(Scene):
             global angle
             global thetaLabel
             if theta == 0:
-                angle = VectorizedPoint().move_to(2 * UP)
+                angle = VectorizedPoint()
             elif theta == 360:
-                angle = VectorizedPoint().move_to(2 * UP)
+                angle = VectorizedPoint()
             else:
                 if theta > 0:
                     angle = Angle(line2, line, radius=0.6, quadrant=(1, 1))
@@ -42,11 +41,13 @@ class Trigon(Scene):
         line1.add_updater(update_line1)
         line2.add_updater(update_line2)
 
-        theta_value = DecimalNumber(0, num_decimal_places=1)
-        theta_value.add_updater(lambda d: d.set_value(t.get_value() * 360/100))
+        angle = always_redraw(lambda: getAngle(t.get_value() * 360/100))
 
-        angle = always_redraw(lambda: getAngle(theta_value.get_value()))
-        theta_value.add_updater(lambda d: d.next_to(angle, UP))
+        def update_text():
+            text = MathTex(r"\theta={:.2f}".format(t.get_value() * 360 / 100)).next_to(circle.point_from_proportion(0.15), buff=0.6)
+            return text
+
+        text = always_redraw(update_text)
 
         def update_all():
             sin = np.sin(t.get_value() * 360 * DEGREES / 100)
@@ -66,7 +67,15 @@ class Trigon(Scene):
 
         all = always_redraw(update_all)
 
-        self.add(ax, circle, always_redraw(lambda: dot), line, line1, theta_value, angle, all)
-        self.play(t.animate.set_value(50), run_time=5)
-        self.play(t.animate.set_value(100), run_time=5)
+        self.add(ax, circle, always_redraw(lambda: dot), line, line1, angle, text, all)
+        self.play(t.animate.set_value(50), run_time=6)
+        self.play(t.animate.set_value(100), run_time=6)
         self.wait()
+
+class Tr(Scene):
+    def construct(self):
+        circle = Circle(radius=2)
+        theta_value = DecimalNumber(0, num_decimal_places=1, font_size=16).scale(2)
+        text = MathTex(r"\theta={:.2f}".format(theta_value.get_value())).next_to(circle.point_from_proportion(0.15), buff=0.6)
+
+        self.add(circle, theta_value, text)
