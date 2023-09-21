@@ -46,21 +46,8 @@ class Trigon(Scene):
         theta_value.add_updater(lambda d: d.set_value(t.get_value() * 360/100))
 
         angle = always_redraw(lambda: getAngle(theta_value.get_value()))
-        theta_value.add_updater(lambda d: d.next_to(dot, UP))
+        theta_value.add_updater(lambda d: d.next_to(angle, UP))
 
-        # def update_sin():
-        #     sin = np.sin(t.get_value()*360*DEGREES/100)
-        #     return sin
-        # def update_cos():
-        #     cos = np.cos(t.get_value()*360*DEGREES/100)
-        #     return cos
-        # def update_tan():
-        #     tan = np.tan(t.get_value()*360*DEGREES/100)
-        #     return tan
-
-        # sin = always_redraw(update_sin)
-        # cos = always_redraw(update_cos)
-        # tan = always_redraw(update_tan)
         def update_all():
             sin = np.sin(t.get_value() * 360 * DEGREES / 100)
             cos = np.cos(t.get_value() * 360 * DEGREES / 100)
