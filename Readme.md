@@ -6,6 +6,9 @@
 # Bubble_Sort
 ![Bubble_Sort1](https://github.com/ImamJhe/Math_Animation/assets/95597578/25ae5148-2750-4925-937a-84c63a1a82b6)
 
+# Trigonometri
+![Trigon](https://github.com/ImamJhe/Math_Animation/assets/95597578/20a4d181-1dc2-44b7-b778-537f2925066f)
+
 # Lissajous_curve
 ![Lissajous_curve](https://github.com/ImamJhe/Math_Animation/assets/95597578/44b14796-7b8b-4b76-97ec-4672d727b07a)
 
