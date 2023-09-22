@@ -71,11 +71,3 @@ class Trigon(Scene):
         self.play(t.animate.set_value(50), run_time=6)
         self.play(t.animate.set_value(100), run_time=6)
         self.wait()
-
-class Tr(Scene):
-    def construct(self):
-        circle = Circle(radius=2)
-        theta_value = DecimalNumber(0, num_decimal_places=1, font_size=16).scale(2)
-        text = MathTex(r"\theta={:.2f}".format(theta_value.get_value())).next_to(circle.point_from_proportion(0.15), buff=0.6)
-
-        self.add(circle, theta_value, text)
